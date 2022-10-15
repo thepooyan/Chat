@@ -1,0 +1,162 @@
+@import '../styles/source/Mixins';
+
+//All massages
+.me, .others {
+    @include flex(fs, c);
+    flex-direction: row;
+    padding: .5em;
+    padding-bottom: 2em;
+    margin: 0 .5em;
+    border-radius: 15px;
+    transition: .3s;
+
+    &.merge {
+        // margin-top: -1.3em;
+
+        .icon {
+            display: none;
+        }
+
+        span {
+            margin-right: 6em;
+        }
+
+        &.others {
+            span {
+                margin-right: unset;
+                margin-left: 6em;
+            }
+        }
+    }
+
+    &.blink {
+        animation: blink 2s cubic-bezier(.47, 0, .74, .71);
+
+        @keyframes blink {
+            0% {
+                background-color: #e3e3e3;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &.select {
+        background-color: #e3e3e3;
+    }
+
+    &.sample {
+        display: none;
+    }
+
+    .icon {
+        --wid: 4em;
+        width: var(--wid);
+        height: var(--wid);
+        background: url('/images/chat/Asset\ 4.png');
+        background-size: contain;
+        border-radius: 50%;
+        position: relative;
+        flex-shrink: 0;
+
+        &::before {
+            content: attr(data-user);
+            position: absolute;
+            top: calc(100% + .2em);
+            width: 0;
+            left: 50%;
+            display: flex;
+            justify-content: center;
+            font-size: .9em;
+            font-weight: 800;
+        }
+    }
+
+    .content {
+        background-color: var(--question);
+        padding: 1em 1.7em;
+        border-radius: 25px 25px 0 25px;
+        margin: 0 1em;
+        position: relative;
+        font-size: 0.8em;
+        font-weight: 500;
+        max-width: var(--offset);
+        text-align: justify;
+
+        &::before {
+            content: attr(data-time);
+            position: absolute;
+            top: calc(100% + 0.2em);
+            right: 0;
+            direction: ltr;
+            white-space: nowrap;
+        }
+
+        a {
+            position: absolute;
+            left: 1em;
+            top: 100%;
+            font-size: 0.9em;
+            white-space: nowrap;
+            color: inherit;
+            right: 5em;
+            text-align: left;
+            color: #0093ff;
+
+            &::before {
+                content: 'پاسخ به: ';
+                color: #42515a;
+            }
+
+            &:empty {
+                display: none;
+            }
+        }
+
+        i {
+            color: grey;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            bottom: 0;
+            height: min-content;
+            margin: auto;
+            padding: 0.4em;
+            font-size: 1.3em;
+            cursor: pointer;
+        }
+    }
+}
+
+//left side massages
+.others {
+    flex-direction: row-reverse;
+
+    .icon {
+        background-image: url('/images/chat/Asset\ 2.png');
+    }
+
+    .content {
+        background-color: var(--answer);
+        border-radius: 25px 25px 25px 0;
+
+        &::before {
+            right: unset;
+            left: 0;
+        }
+
+        a {
+            left: 5em;
+            right: 1em;
+            text-align: right;
+        }
+
+        i {
+            right: unset;
+            left: 100%;
+            transform: scaleX(-1);
+        }
+    }
+}

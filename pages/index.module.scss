@@ -1,0 +1,8 @@
+.chat {
+    width: var(--divide);
+    float: right;
+    & + .aside {
+        width: calc(100% - var(--divide));
+        float: left;
+    }
+}

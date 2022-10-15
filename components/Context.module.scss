@@ -1,0 +1,47 @@
+.contextPlaceholder {
+    position: relative;
+    height: 0;
+    padding: 0;
+
+    .context {
+        position: absolute;
+        background-color: white;
+        list-style-type: none;
+        border-radius: .4em;
+        margin: 0;
+        padding: 0;
+        z-index: 10;
+        display: block;
+        bottom: 10em;
+        --wid: 11em;
+        width: var(--wid);
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0);
+        transform-origin:top left;
+        height: max-content;
+        transition: transform .2s, opacity .2s;
+
+        &.active {
+            opacity: 100;
+            transform: scale(1);
+        }
+
+        li {
+            padding: 0.3em 2.4em;
+            font-size: 0.85em;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            color: #42515a;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        &.others li.strict {
+            display: none;
+        }
+    }
+}
