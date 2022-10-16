@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styles from './Chat.module.scss'
 import Context from './Context'
 import Date from './Date'
 import Form from './Form'
 import Msg from './Msg'
+import Reply from './Reply'
 
-const Chat = ({className}) => {
+const Chat = ({ className }) => {
 
-  const Msgs = [
-    { id: 3, user: 'احمد', time: '11:00 PM', text: 'این یک پیام تستی است', isMe: false, isReply: 3 },
-    { id: 4, user: 'پویان', time: '11:00 AM', text: 'این یک پیام تستی است', isMe: true, isReply: 4 },
-  ]
+  const Msgs = useSelector(state => state)
+
+  const [scrolledOut, setScrolledOut] = useState(false);
+
+  const scrollHandler = (e) => {
+    let veiw = e.target;
+    if (veiw.scrollTop >= veiw.scrollHeight - veiw.clientHeight && !scrolledOut) {
+      setScrolledOut(true)
+    } else {
+      setScrolledOut(false)
+    }
+  }
+
+  let a:number;
+  a = 'sdf';
+
 
   return (
     <section id={styles.chat} className={className}>
-      <div className={styles.veiw}>
+      <div className={styles.veiw} onScroll={scrollHandler}>
         <Context />
 
         <Date>1400/03/26</Date>
@@ -29,8 +43,8 @@ const Chat = ({className}) => {
           return <Msg key={item.id} id={item.id} user={item.user} time={item.time} isReply={isReply} isMe={item.isMe}>{item.text}</Msg>
         })}
       </div>
-
-        <Form/>
+      <Reply getDownActive={scrolledOut} />
+      <Form />
     </section>
   )
 }

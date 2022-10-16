@@ -1,0 +1,84 @@
+@import '../styles/source/Mixins';
+.wrap {
+    position: relative;
+
+    .getDown {
+        background-color: var(--question);
+        color: white;
+        @include box(2.5em);
+        padding: 0;
+        border-radius: 50%;
+        @include flex(c, c);
+        position: absolute;
+        bottom: calc(100% + 1em);
+        right: 0.6em;
+        cursor: pointer;
+        z-index: 2;
+        transition: .2s .2s;
+
+        transform: scale(.3);
+        opacity: 0;
+
+        &.active {
+            transform: scale(1);
+            opacity: 100;
+        }
+    }
+
+    .reply {
+        font-size: .8em;
+        padding: 0.8em;
+        padding-bottom: 0;
+        background-color: var(--question);
+        display: flex;
+        flex: 0 0 auto;
+        justify-content: space-between;
+        overflow: hidden;
+        transition: .2s;
+        max-height: 7.5em;
+        padding: 0;
+
+        >div {
+            background-color: var(--answer);
+            flex: 0 0 90.5%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 30px;
+            margin: 0.8em 0.5em;
+            margin-bottom: 0;
+            padding: 0.6em 2em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            .icon::before {
+                content: attr(data-user) ':';
+                color: #007cff;
+                font-weight: bold;
+            }
+
+            span {
+                i {
+                    display: none;
+                }
+            }
+
+            a {
+                display: none;
+            }
+        }
+
+        >i {
+            color: white;
+            cursor: pointer;
+            flex: 0 0 7%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.9em;
+        }
+
+        &.closed {
+            max-height: 0;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import Aside from "../components/Aside";
 import Chat from "../components/Chat";
 
 export default function Home() {
+
   return (
     <>
       <Chat className={styles.chat}/>
