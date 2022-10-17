@@ -115,7 +115,7 @@
             }
         }
 
-        i {
+        svg {
             color: grey;
             position: absolute;
             right: 100%;
@@ -125,6 +125,7 @@
             margin: auto;
             padding: 0.4em;
             font-size: 1.3em;
+            width: 1em;
             cursor: pointer;
         }
     }
@@ -153,7 +154,7 @@
             text-align: right;
         }
 
-        i {
+        svg {
             right: unset;
             left: 100%;
             transform: scaleX(-1);
