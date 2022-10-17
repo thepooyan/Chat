@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import styles from './Msg.module.scss'
 
-type PropsType = {id: number, isMe: boolean, children:any, time: string, user:string, isReply: {id:number, user:string}|undefined}
-const Msg = ({id, isMe=true, children, time, user, isReply=undefined}:PropsType) => {
+
+const Msg = ({id, isMe=true, children, time, user, isReply=undefined}) => {
+
   return (
     <div className={isMe?styles.me:styles.others} id={id.toString()}>
         <div className={styles.icon} data-user={user}></div>

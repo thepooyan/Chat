@@ -9,9 +9,9 @@ import Reply from './Reply'
 
 const Chat = ({ className }) => {
 
-  const Msgs = useSelector(state => state)
+  const Msgs = useSelector((state) => state)
 
-  const veiw = useRef();
+  const veiw = useRef()
   const [scrolledOut, setScrolledOut] = useState(false);
 
   const scrollHandler = (e) => {
@@ -23,11 +23,12 @@ const Chat = ({ className }) => {
     }
   }
 
-  const scrollChatUp = ():void => {
-    veiw.current.scrollTo(0,0);
+  const scrollChatUp = () => {
+    veiw?.current?.scrollTo(0,0);
   }
-  const scrollChatDown = ():void => {
-    veiw.current.scrollTop = veiw.current.scrollHeight;
+  const scrollChatDown = () => {
+    if (veiw.current)
+      veiw.current.scrollTop = veiw?.current?.scrollHeight;
   }
 
   return (

@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Reply.module.scss'
 import { faChevronUp, faClose } from '@fortawesome/free-solid-svg-icons'
 
-const Reply = ({ getDownActive = false, scrollChatDown }: {scrollChatDown:Function, getDownActive: boolean}) => {
+const Reply = ({ getDownActive = false, scrollChatDown }) => {
 
     return (
         <div className={styles.wrap}>

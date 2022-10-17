@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import { addMsg } from '../redux/MsgActions';
 import styles from './Form.module.scss'
 
-const Form = ({scrollChatDown}:{scrollChatDown:Function}) => {
+const Form = ({scrollChatDown}) => {
 
   const txtRef = useRef();
   const dispatch = useDispatch();
 
-  const submitMsg = (e:any):void => {
+  const submitMsg = (e) => {
     e.preventDefault();
-    let txt:string = txtRef.current.innerHTML;
+    let txt = txtRef.current.innerHTML;
     txt = txt.replace(/<br\/>$/, '')
     txt = txt.replace(/<br\/?>/, '\n')
     
@@ -21,7 +21,7 @@ const Form = ({scrollChatDown}:{scrollChatDown:Function}) => {
     }, 0);
   }
 
-  const keyDownHandler = (e:any):void => {
+  const keyDownHandler = (e) => {
       if (e.keyCode == 13 && !e.shiftKey) {
         submitMsg(e);
       }
