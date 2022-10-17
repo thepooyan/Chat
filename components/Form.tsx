@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addMsg } from '../redux/MsgActions';
 import styles from './Form.module.scss'
 
-const Form = () => {
+const Form = ({scrollChatDown}:{scrollChatDown:Function}) => {
 
   const txtRef = useRef();
   const dispatch = useDispatch();
@@ -16,6 +16,9 @@ const Form = () => {
     
     dispatch(addMsg('Me', '11:45 am', txt, true))
     txtRef.current.innerHTML = '';
+    setTimeout(() => {
+      scrollChatDown()
+    }, 0);
   }
 
   const keyDownHandler = (e:any):void => {

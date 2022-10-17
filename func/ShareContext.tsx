@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-export const ShareContext = React.createContext();
+export const ShareContext = React.createContext({});
 
-export const ShareContextProvider = (props) => {
+export const ShareContextProvider = (props:{children:string}) => {
 
-	const share = {};
+	const [share, setShare] = useState({})
 
-	return <ShareContext.Provider value={share}>{props.children}</ShareContext.Provider>
+	return <ShareContext.Provider value={[share, setShare]}>{props.children}</ShareContext.Provider>
 }

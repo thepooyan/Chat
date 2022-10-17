@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from './Chat.module.scss'
 import Context from './Context'
@@ -11,6 +11,7 @@ const Chat = ({ className }) => {
 
   const Msgs = useSelector(state => state)
 
+  const veiw = useRef();
   const [scrolledOut, setScrolledOut] = useState(false);
 
   const scrollHandler = (e) => {
@@ -22,13 +23,16 @@ const Chat = ({ className }) => {
     }
   }
 
-  let a:number;
-  a = 'sdf';
-
+  const scrollChatUp = ():void => {
+    veiw.current.scrollTo(0,0);
+  }
+  const scrollChatDown = ():void => {
+    veiw.current.scrollTop = veiw.current.scrollHeight;
+  }
 
   return (
     <section id={styles.chat} className={className}>
-      <div className={styles.veiw} onScroll={scrollHandler}>
+      <div className={styles.veiw} onScroll={scrollHandler} ref={veiw}> 
         <Context />
 
         <Date>1400/03/26</Date>
@@ -43,8 +47,8 @@ const Chat = ({ className }) => {
           return <Msg key={item.id} id={item.id} user={item.user} time={item.time} isReply={isReply} isMe={item.isMe}>{item.text}</Msg>
         })}
       </div>
-      <Reply getDownActive={scrolledOut} />
-      <Form />
+      <Reply getDownActive={scrolledOut} scrollChatDown={scrollChatUp}/>
+      <Form scrollChatDown={scrollChatDown}/>
     </section>
   )
 }
